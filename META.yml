@@ -25,7 +25,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300003, CPAN::Meta::Converter version 2.110930'
+generated_by: 'Dist::Zilla version 4.300003, CPAN::Meta::Converter version 2.112150'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -33,6 +33,9 @@ meta-spec:
 name: CatalystX-Resource
 requires:
   Catalyst::Controller: 0
+  Catalyst::Plugin::Session: 0
+  Catalyst::Plugin::Session::State::Cookie: 0
+  Catalyst::Plugin::Session::Store::FastMmap: 0
   CatalystX::Component::Traits: 0
   CatalystX::InjectComponent: 0
   Moose: 0
@@ -42,4 +45,4 @@ requires:
   MooseX::Types::LoadableClass: 0
   MooseX::Types::Moose: 0
   namespace::autoclean: 0
-version: 0.01
+version: 0.01_01

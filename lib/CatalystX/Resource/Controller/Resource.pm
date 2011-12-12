@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-    $CatalystX::Resource::Controller::Resource::VERSION = '0.01';    # TRIAL
+    $CatalystX::Resource::Controller::Resource::VERSION = '0.01_01';   # TRIAL
 }
 use Moose;
 use namespace::autoclean;
@@ -16,6 +16,7 @@ with qw/
     CatalystX::Component::Traits
     /;
 
+# merge traits from app config with local traits
 has '+_trait_merge' => ( default => 1 );
 
 __PACKAGE__->config(
@@ -32,9 +33,8 @@ __PACKAGE__->config(
 );
 
 has 'model' => (
-    is => 'ro',
-
-    #isa      => 'DBIx::Class::Resultset',
+    is       => 'ro',
+    isa      => NonEmptySimpleStr,
     required => 1,
 );
 
@@ -256,7 +256,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.01
+version 0.01_01
 
 =head1 ATTRIBUTES
 

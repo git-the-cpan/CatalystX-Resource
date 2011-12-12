@@ -41,6 +41,9 @@ my %WriteMakefileArgs = (
   "NAME" => "CatalystX::Resource",
   "PREREQ_PM" => {
     "Catalyst::Controller" => 0,
+    "Catalyst::Plugin::Session" => 0,
+    "Catalyst::Plugin::Session::State::Cookie" => 0,
+    "Catalyst::Plugin::Session::Store::FastMmap" => 0,
     "CatalystX::Component::Traits" => 0,
     "CatalystX::InjectComponent" => 0,
     "Moose" => 0,
@@ -51,7 +54,7 @@ my %WriteMakefileArgs = (
     "MooseX::Types::Moose" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.01_01",
   "test" => {
     "TESTS" => "t/*.t"
   }
