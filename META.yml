@@ -45,4 +45,4 @@ requires:
   MooseX::Types::LoadableClass: 0
   MooseX::Types::Moose: 0
   namespace::autoclean: 0
-version: 0.01_01
+version: 0.02
