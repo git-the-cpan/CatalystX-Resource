@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Form;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.02'; # TRIAL
+    $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.001_001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -79,7 +79,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Form - handles form related
 
 =head1 VERSION
 
-version 0.02
+version 0.001_001
 
 =head1 ATTRIBUTES
 
