@@ -48,4 +48,6 @@ t/lib/TestApp/root/templates/resource/song/show.tt
 t/lib/TestApp/root/templates/wrapper.tt
 t/lib/TestApp/testdbic.db
 t/release-eol.t
+t/release-pod-coverage.t
+t/release-pod-syntax.t
 t/script/testapp_server.pl

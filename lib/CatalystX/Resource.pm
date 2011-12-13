@@ -1,6 +1,6 @@
 package CatalystX::Resource;
 {
-    $CatalystX::Resource::VERSION = '0.001_001';
+    $CatalystX::Resource::VERSION = '0.001_002';
 }
 use Moose::Role;
 use CatalystX::InjectComponent;
@@ -32,7 +32,7 @@ CatalystX::Resource - Provide CRUD functionality to your Controllers
 
 =head1 VERSION
 
-version 0.001_001
+version 0.001_002
 
 =head1 SYNOPSIS
 
