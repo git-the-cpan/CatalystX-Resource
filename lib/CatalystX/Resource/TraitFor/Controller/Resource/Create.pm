@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Create;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Create::VERSION = '0.001_002';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Create::VERSION = '0.001_003';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -42,7 +42,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Create - a create action fo
 
 =head1 VERSION
 
-version 0.001_002
+version 0.001_003
 
 =head1 ATTRIBUTES
 
