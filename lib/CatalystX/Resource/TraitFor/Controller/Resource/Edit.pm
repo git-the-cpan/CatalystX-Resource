@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Edit;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.001_003';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.001_004';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -18,7 +18,8 @@ has 'activate_fields_edit' => (
     default => sub { [] },
 );
 
-sub edit : Chained('base_with_id') PathPart('edit') Args(0) {
+sub edit : Method('GET') Method('POST') Chained('base_with_id')
+    PathPart('edit') Args(0) {
     my ( $self, $c ) = @_;
     $c->stash( set_update_msg => 1 );
     $self->form( $c, $self->activate_fields_edit );
@@ -36,7 +37,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Edit - a edit action for yo
 
 =head1 VERSION
 
-version 0.001_003
+version 0.001_004
 
 =head1 ATTRIBUTES
 

@@ -103,8 +103,16 @@ __PACKAGE__->config(
             },
         },
     },
-    'CatalystX::Resource' =>
-        { controllers => [qw/ Artist Concert Album Song /], },
+    'CatalystX::Resource' => {
+        controllers => [
+            qw/
+                Resource::Artist
+                Resource::Concert
+                Resource::Album
+                Resource::Song
+                /
+        ],
+    },
 );
 
 __PACKAGE__->setup();

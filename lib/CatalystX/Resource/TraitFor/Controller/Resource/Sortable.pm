@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Sortable;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.001_003';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.001_004';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -16,31 +16,22 @@ requires qw/
 
 # ABSTRACT: make your Resource sortable
 
-sub move_next : Chained('base_with_id') PathPart('move_next') Args(0) {
+sub move_next : Method('POST') Chained('base_with_id') PathPart('move_next')
+    Args(0) {
     my ( $self, $c ) = @_;
-    if ( $c->req->method eq 'POST' ) {
-        my $resource = $c->stash->{ $self->resource_key };
-        $resource->move_next;
-        $c->flash( msg => $self->_msg( $c, 'move_next' ) );
-        $self->_redirect($c);
-    }
-    else {
-        $c->detach('/error404');
-    }
+    my $resource = $c->stash->{ $self->resource_key };
+    $resource->move_next;
+    $c->flash( msg => $self->_msg( $c, 'move_next' ) );
+    $self->_redirect($c);
 }
 
-sub move_previous : Chained('base_with_id') PathPart('move_previous') Args(0)
-{
+sub move_previous : Method('POST') Chained('base_with_id')
+    PathPart('move_previous') Args(0) {
     my ( $self, $c ) = @_;
-    if ( $c->req->method eq 'POST' ) {
-        my $resource = $c->stash->{ $self->resource_key };
-        $resource->move_previous;
-        $c->flash( msg => $self->_msg( $c, 'move_previous' ) );
-        $self->_redirect($c);
-    }
-    else {
-        $c->detach('/error404');
-    }
+    my $resource = $c->stash->{ $self->resource_key };
+    $resource->move_previous;
+    $c->flash( msg => $self->_msg( $c, 'move_previous' ) );
+    $self->_redirect($c);
 }
 
 1;
@@ -55,7 +46,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Sortable - makes your resou
 
 =head1 VERSION
 
-version 0.001_003
+version 0.001_004
 
 =head1 SYNOPSIS
 

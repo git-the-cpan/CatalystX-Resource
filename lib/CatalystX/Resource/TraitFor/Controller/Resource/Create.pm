@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Create;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Create::VERSION = '0.001_003';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Create::VERSION = '0.001_004';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -20,7 +20,8 @@ has 'activate_fields_create' => (
     default => sub { [] },
 );
 
-sub create : Chained('base') PathPart('create') Args(0) {
+sub create : Method('GET') Method('POST') Chained('base') PathPart('create')
+    Args(0) {
     my ( $self, $c ) = @_;
     my $resource = $c->stash->{ $self->resultset_key }->new_result( {} );
     $c->stash(
@@ -42,7 +43,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Create - a create action fo
 
 =head1 VERSION
 
-version 0.001_003
+version 0.001_004
 
 =head1 ATTRIBUTES
 

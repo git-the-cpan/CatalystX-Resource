@@ -31,6 +31,8 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "CatalystX::Resource",
   "PREREQ_PM" => {
+    "Catalyst::ActionRole::MatchRequestMethod" => 0,
+    "Catalyst::Controller::ActionRole" => 0,
     "Catalyst::Model::DBIC::Schema" => 0,
     "Catalyst::Plugin::Session" => "0.27",
     "Catalyst::Runtime" => "5.80013",
@@ -45,7 +47,7 @@ my %WriteMakefileArgs = (
     "MooseX::Types::LoadableClass" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.001_003",
+  "VERSION" => "0.001_004",
   "test" => {
     "TESTS" => "t/*.t"
   }
