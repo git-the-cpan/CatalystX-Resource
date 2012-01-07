@@ -12,6 +12,7 @@ lib/CatalystX/Resource/TraitFor/Controller/Resource/Delete.pm
 lib/CatalystX/Resource/TraitFor/Controller/Resource/Edit.pm
 lib/CatalystX/Resource/TraitFor/Controller/Resource/Form.pm
 lib/CatalystX/Resource/TraitFor/Controller/Resource/List.pm
+lib/CatalystX/Resource/TraitFor/Controller/Resource/MergeUploadParams.pm
 lib/CatalystX/Resource/TraitFor/Controller/Resource/Show.pm
 lib/CatalystX/Resource/TraitFor/Controller/Resource/Sortable.pm
 perlcritic.rc
@@ -23,6 +24,7 @@ t/03_redirect_mode_list.t
 t/04_redirect_mode_show.t
 t/05_redirect_mode_show_parent.t
 t/06_sortable.t
+t/07_merge_upload_params.t
 t/lib/TestApp.pm
 t/lib/TestApp/Controller/Root.pm
 t/lib/TestApp/Form/Resource/Album.pm
