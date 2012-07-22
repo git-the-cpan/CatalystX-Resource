@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-    $CatalystX::Resource::Controller::Resource::VERSION = '0.001_005';
+    $CatalystX::Resource::Controller::Resource::VERSION = '0.001_006';
 }
 use Moose;
 use namespace::autoclean;
@@ -72,6 +72,12 @@ has 'redirect_mode' => (
     is      => 'rw',
     isa     => NonEmptySimpleStr,
     default => 'list',
+);
+
+has 'error_path' => (
+    is      => 'ro',
+    isa     => NonEmptySimpleStr,
+    default => '/default',
 );
 
 sub _redirect {
@@ -240,7 +246,7 @@ sub base_with_id : Chained('base') PathPart('') CaptureArgs(1) {
     }
     else {
         $c->stash( error_msg => $self->_msg( $c, 'not_found', $id ) );
-        $c->detach('/error404');
+        $c->detach( $self->error_path );
     }
 }
 
@@ -257,7 +263,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.001_005
+version 0.001_006
 
 =head1 ATTRIBUTES
 
@@ -298,6 +304,10 @@ After a created/edit/delete action a redirect takes place.
 The redirect behavior can be controlled with the redirect_mode attribute.
 
 default = 'list'
+
+=head2 error_path
+
+documented in L<CatalystX::Resource>
 
 =head1 METHODS
 
