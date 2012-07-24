@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Sortable;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.001_006';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.002000';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -37,7 +37,6 @@ sub move_previous : Method('POST') Chained('base_with_id')
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -46,7 +45,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Sortable - makes your resou
 
 =head1 VERSION
 
-version 0.001_006
+version 0.002000
 
 =head1 SYNOPSIS
 
@@ -120,3 +119,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+

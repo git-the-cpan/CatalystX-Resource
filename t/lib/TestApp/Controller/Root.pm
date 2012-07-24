@@ -27,8 +27,7 @@ sub error404 : Private {
     $c->stash( template => 'error.tt' );
 }
 
-sub end : ActionClass('RenderView') {
-}
+sub end : ActionClass('RenderView') { }
 
 __PACKAGE__->meta->make_immutable;
 

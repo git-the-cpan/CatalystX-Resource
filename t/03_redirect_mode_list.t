@@ -57,8 +57,9 @@ lives_ok(
         '/davewood deleted/',
         'check delete success notification'
     );
-    ok( request($path)->code == 404,
-        "Already deleted $path returns HTTP 404" );
+    ok( request( POST $path)->code == 404,
+        "Already deleted $path returns HTTP 404"
+    );
 }
 
 # CREATE
@@ -164,8 +165,9 @@ lives_ok(
         '/Es gibt Reis, Baby deleted/',
         'check delete success notification'
     );
-    ok( request($path)->code == 404,
-        "Already deleted $path returns HTTP 404" );
+    ok( request( POST $path)->code == 404,
+        "Already deleted $path returns HTTP 404"
+    );
 }
 
 done_testing;

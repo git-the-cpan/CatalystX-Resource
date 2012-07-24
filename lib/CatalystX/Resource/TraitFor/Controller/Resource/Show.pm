@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Show;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Show::VERSION = '0.001_006';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Show::VERSION = '0.002000';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -15,7 +15,6 @@ sub show : Method('GET') Chained('base_with_id') PathPart('show') Args(0) {
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -24,7 +23,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Show - a show action for yo
 
 =head1 VERSION
 
-version 0.001_006
+version 0.002000
 
 =head1 ACTIONS
 
@@ -44,3 +43,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
