@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-    $CatalystX::Resource::Controller::Resource::VERSION = '0.002000';
+    $CatalystX::Resource::Controller::Resource::VERSION = '0.002001';
 }
 use Moose;
 use namespace::autoclean;
@@ -262,7 +262,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.002000
+version 0.002001
 
 =head1 ATTRIBUTES
 

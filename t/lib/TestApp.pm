@@ -1,5 +1,6 @@
 package TestApp;
 use Moose;
+use File::Temp qw/ tempdir /;
 use namespace::autoclean;
 
 use Catalyst qw/
@@ -13,8 +14,11 @@ extends 'Catalyst';
 our $VERSION = '0.01';
 
 __PACKAGE__->config(
-    name        => 'TestApp',
-    session     => { flash_to_stash => 1 },
+    name              => 'TestApp',
+    'Plugin::Session' => {
+        storage        => tempdir( CLEANUP => 1 ),
+        flash_to_stash => 1.
+    },
     'Model::DB' => {
         connect_info => {
             dsn      => 'dbi:SQLite:' . __PACKAGE__->path_to('testdbic.db'),

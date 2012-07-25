@@ -16,6 +16,7 @@ my %WriteMakefileArgs = (
     "Catalyst::Plugin::Session::State::Cookie" => 0,
     "Catalyst::Plugin::Session::Store::File" => 0,
     "Catalyst::View::TT" => 0,
+    "File::Temp" => 0,
     "FindBin" => 0,
     "HTTP::Message" => 0,
     "Test::Exception" => 0,
@@ -47,7 +48,7 @@ my %WriteMakefileArgs = (
     "MooseX::Types::LoadableClass" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.002000",
+  "VERSION" => "0.002001",
   "test" => {
     "TESTS" => "t/*.t"
   }
