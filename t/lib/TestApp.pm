@@ -61,15 +61,16 @@ __PACKAGE__->config(
         actions                => { base => { PathPart => 'artists', }, },
     },
     'Controller::Resource::Concert' => {
-        resultset_key    => 'concerts_rs',
-        resources_key    => 'concerts',
-        resource_key     => 'concert',
-        parent_key       => 'artist',
-        parents_accessor => 'concerts',
-        form_class       => 'TestApp::Form::Resource::Concert',
-        model            => 'DB::Resource::Concert',
-        traits           => ['-Delete'],
-        actions          => {
+        resultset_key      => 'concerts_rs',
+        resources_key      => 'concerts',
+        resource_key       => 'concert',
+        parent_key         => 'artist',
+        parents_accessor   => 'concerts',
+        form_class         => 'TestApp::Form::Resource::Concert',
+        model              => 'DB::Resource::Concert',
+        traits             => ['-Delete'],
+        identifier_columns => ['location'],
+        actions            => {
             base => {
                 PathPart => 'concerts',
                 Chained  => '/resource/artist/base_with_id',
