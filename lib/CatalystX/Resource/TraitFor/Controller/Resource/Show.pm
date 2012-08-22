@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Show;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Show::VERSION = '0.002003';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Show::VERSION = '0.002004';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -23,7 +23,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Show - a show action for yo
 
 =head1 VERSION
 
-version 0.002003
+version 0.002004
 
 =head1 ACTIONS
 

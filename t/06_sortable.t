@@ -65,6 +65,33 @@ lives_ok(
     'create song 3'
 );
 
+lives_ok(
+    sub {
+        $album->artworks->create(
+            { id => 1, name => 'album coverfrontside' } );
+    },
+    'create artwork 1'
+);
+lives_ok(
+    sub {
+        $album->artworks->create(
+            { id => 2, name => 'album coverbackside' } );
+    },
+    'create artwork 2'
+);
+lives_ok(
+    sub { $album->artworks->create( { id => 3, name => "bonus pictures" } ); }
+    ,
+    'create artwork 3'
+);
+
+lives_ok( sub { $album->lyrics->create( { id => 1, name => "lyric1" } ); },
+    'create lyric1' );
+lives_ok( sub { $album->lyrics->create( { id => 2, name => "lyric2" } ); },
+    'create lyric2' );
+lives_ok( sub { $album->lyrics->create( { id => 3, name => "lyric3" } ); },
+    'create lyric3' );
+
 # move_next
 {
     my $path = '/artists/1/move_next';
@@ -153,6 +180,51 @@ lives_ok(
         $content,
         '/smack my bitch up<\/a>.*hit me baby one more time/s',
         'resource has been moved to previous position'
+    );
+}
+
+# Nested resource, List trait of child resource is disabled
+# redirect_mode = 'show_parent'
+{
+    my $path = '/artists/1/albums/1/artworks/1/move_next';
+    my $res  = request($path);
+    ok( $res->is_error, "GET $path returns HTTP 404" );
+    $res = request( POST $path);
+    ok( $res->is_redirect, "$path returns HTTP 302" );
+    my $uri = URI->new( $res->header('location') );
+    is( $uri->path, '/artists/1/albums/1/show' );
+    my $cookie = $res->header('Set-Cookie');
+    my $content
+        = request( GET $uri->path, Cookie => $cookie )->decoded_content;
+    like(
+        $content,
+        '/album coverfrontside moved next/',
+        'check move_next success notification'
+    );
+    like(
+        $content,
+        '/coverbackside.*<strong>album coverfrontside<\/strong>/s',
+        'child resource coverfrontside listed after coverbackside on parent page'
+    );
+}
+
+# Nested resource
+# redirect_mode = 'show'
+{
+    my $path = '/artists/1/albums/1/lyrics/1/move_next';
+    my $res  = request($path);
+    ok( $res->is_error, "GET $path returns HTTP 404" );
+    $res = request( POST $path);
+    ok( $res->is_redirect, "$path returns HTTP 302" );
+    my $uri = URI->new( $res->header('location') );
+    is( $uri->path, '/artists/1/albums/1/lyrics/1/show' );
+    my $cookie = $res->header('Set-Cookie');
+    my $content
+        = request( GET $uri->path, Cookie => $cookie )->decoded_content;
+    like(
+        $content,
+        '/lyric1 moved next/',
+        'check move_next success notification'
     );
 }
 

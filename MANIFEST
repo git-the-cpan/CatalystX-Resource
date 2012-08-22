@@ -29,13 +29,17 @@ t/lib/TestApp.pm
 t/lib/TestApp/Controller/Root.pm
 t/lib/TestApp/Form/Resource/Album.pm
 t/lib/TestApp/Form/Resource/Artist.pm
+t/lib/TestApp/Form/Resource/Artwork.pm
 t/lib/TestApp/Form/Resource/Concert.pm
+t/lib/TestApp/Form/Resource/Lyric.pm
 t/lib/TestApp/Form/Resource/Song.pm
 t/lib/TestApp/Model/DB.pm
 t/lib/TestApp/Schema.pm
 t/lib/TestApp/Schema/Result/Resource/Album.pm
 t/lib/TestApp/Schema/Result/Resource/Artist.pm
+t/lib/TestApp/Schema/Result/Resource/Artwork.pm
 t/lib/TestApp/Schema/Result/Resource/Concert.pm
+t/lib/TestApp/Schema/Result/Resource/Lyric.pm
 t/lib/TestApp/Schema/Result/Resource/Song.pm
 t/lib/TestApp/View/HTML.pm
 t/lib/TestApp/root/templates/error.tt
@@ -45,6 +49,7 @@ t/lib/TestApp/root/templates/resource/artist/list.tt
 t/lib/TestApp/root/templates/resource/artist/show.tt
 t/lib/TestApp/root/templates/resource/concert/list.tt
 t/lib/TestApp/root/templates/resource/concert/show.tt
+t/lib/TestApp/root/templates/resource/lyric/show.tt
 t/lib/TestApp/root/templates/resource/song/list.tt
 t/lib/TestApp/root/templates/resource/song/show.tt
 t/lib/TestApp/root/templates/wrapper.tt

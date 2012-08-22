@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-    $CatalystX::Resource::Controller::Resource::VERSION = '0.002003';
+    $CatalystX::Resource::Controller::Resource::VERSION = '0.002004';
 }
 use Moose;
 use namespace::autoclean;
@@ -94,25 +94,14 @@ sub _redirect {
     my @captures = @{ $c->request->captures };
     my $action   = $c->action->name;
 
-    ##############################
-    # move_next || move_previous #
-    ##############################
-# path: /parents/1/resources/1/move_next        => redirect_path: /parents/1/resources/list
-# path: /parents/1/resources/1/move_previous    => redirect_path: /parents/1/resources/list
-# path: /resources/1/move_next                  => redirect_path: /resources/list
-# path: /resources/1/move_previous              => redirect_path: /resources/list
-    if ( $action eq 'move_next' || $action eq 'move_previous' ) {
-        pop(@captures);
-        $path = $c->uri_for_action( $self->action_for('list'), \@captures );
-    }
-
     ########################
     # redirect_mode 'list' #
     ########################
-# path: /parents/1/resources/create   => redirect_path: /parents/1/resources/list
-# path: /parents/1/resources/3/edit   => redirect_path: /parents/1/resources/list
-# path: /parents/1/resources/3/delete => redirect_path: /parents/1/resources/list
-    elsif ( $mode eq 'list' ) {
+# path: /parents/1/resources/create      => redirect_path: /parents/1/resources/list
+# path: /parents/1/resources/3/edit      => redirect_path: /parents/1/resources/list
+# path: /parents/1/resources/3/delete    => redirect_path: /parents/1/resources/list
+# path: /parents/1/resources/3/move_next => redirect_path: /parents/1/resources/list
+    if ( $mode eq 'list' ) {
         pop(@captures)
             unless $action eq 'create';
         $path = $c->uri_for_action( $self->action_for('list'), \@captures );
@@ -121,9 +110,10 @@ sub _redirect {
     ########################
     # redirect_mode 'show' #
     ########################
-# path: /parents/1/resources/create   => redirect_path: /parents/1/resources/<id>/show
-# path: /parents/1/resources/3/edit   => redirect_path: /parents/1/resources/3/show
-# path: /parents/1/resources/3/delete => redirect_path: /parents/1/resources/list
+# path: /parents/1/resources/create      => redirect_path: /parents/1/resources/<id>/show
+# path: /parents/1/resources/3/edit      => redirect_path: /parents/1/resources/3/show
+# path: /parents/1/resources/3/move_next => redirect_path: /parents/1/resources/3/show
+# path: /parents/1/resources/3/delete    => redirect_path: /parents/1/resources/list
     elsif ( $mode eq 'show' ) {
         if ( $action eq 'create' ) {
             my $id_of_created_resource
@@ -132,7 +122,10 @@ sub _redirect {
             $path
                 = $c->uri_for_action( $self->action_for('show'), \@captures );
         }
-        elsif ( $action eq 'edit' ) {
+        elsif ($action eq 'edit'
+            || $action eq 'move_next'
+            || $action eq 'move_previous' )
+        {
             $path
                 = $c->uri_for_action( $self->action_for('show'), \@captures );
         }
@@ -146,12 +139,14 @@ sub _redirect {
     ###############################
     # redirect_mode 'show_parent' #
     ###############################
-    # path: /parents/1/resources/create   => redirect_path: /parents/1/show
-    # path: /resources/create             => redirect_path: /resources/list
-    # path: /parents/1/resources/3/edit   => redirect_path: /parents/1/show
-    # path: /resources/3/edit             => redirect_path: /resources/list
-    # path: /parents/1/resources/3/delete => redirect_path: /parents/1/show
-    # path: /resources/3/delete           => redirect_path: /resources/list
+    # path: /parents/1/resources/create      => redirect_path: /parents/1/show
+    # path: /resources/create                => redirect_path: /resources/list
+    # path: /parents/1/resources/3/edit      => redirect_path: /parents/1/show
+    # path: /resources/3/edit                => redirect_path: /resources/list
+    # path: /parents/1/resources/3/delete    => redirect_path: /parents/1/show
+    # path: /resources/3/delete              => redirect_path: /resources/list
+    # path: /parents/1/resources/3/move_next => redirect_path: /parents/1/show
+    # path: /resources/3/move_next           => redirect_path: /resources/list
     elsif ( $mode eq 'show_parent' ) {
         if ( $self->has_parent ) {
             my @chain
@@ -162,7 +157,11 @@ sub _redirect {
             if ( $action eq 'create' ) {
                 $parent_base_with_id_action = $chain[-3];
             }
-            elsif ( $action eq 'edit' || $action eq 'delete' ) {
+            elsif ($action eq 'edit'
+                || $action eq 'delete'
+                || $action eq 'move_next'
+                || $action eq 'move_previous' )
+            {
                 $parent_base_with_id_action = $chain[-4];
                 pop @captures;
             }
@@ -274,7 +273,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.002003
+version 0.002004
 
 =head1 ATTRIBUTES
 
