@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Form;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.002004';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.003_001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -33,12 +33,15 @@ sub form {
     my $resource = $c->stash->{ $self->resource_key };
 
     # activate_form_fields in stash overrides activate_fields from config
-    my $activate_form_fields = $c->stash->{activate_form_fields}
-        || [@$activate_fields];
+    my $activate_form_fields
+        = exists $c->stash->{activate_form_fields}
+        ? $c->stash->{activate_form_fields}
+        : [@$activate_fields];
 
     # if you want to pass additional attributes to the form put a hashref in
     # the stash key 'form_attrs'
-    my $form_attrs = $c->stash->{form_attrs} || {};
+    my $form_attrs
+        = exists $c->stash->{form_attrs} ? $c->stash->{form_attrs} : {};
 
     my $form = $self->form_class->new(%$form_attrs);
     $form->process(
@@ -70,6 +73,7 @@ sub form {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -78,7 +82,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Form - handles form related
 
 =head1 VERSION
 
-version 0.002004
+version 0.003_001
 
 =head1 ATTRIBUTES
 
@@ -111,4 +115,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

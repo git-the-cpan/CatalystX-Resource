@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-    $CatalystX::Resource::Controller::Resource::VERSION = '0.002004';
+    $CatalystX::Resource::Controller::Resource::VERSION = '0.003_001';
 }
 use Moose;
 use namespace::autoclean;
@@ -100,7 +100,6 @@ sub _redirect {
 # path: /parents/1/resources/create      => redirect_path: /parents/1/resources/list
 # path: /parents/1/resources/3/edit      => redirect_path: /parents/1/resources/list
 # path: /parents/1/resources/3/delete    => redirect_path: /parents/1/resources/list
-# path: /parents/1/resources/3/move_next => redirect_path: /parents/1/resources/list
     if ( $mode eq 'list' ) {
         pop(@captures)
             unless $action eq 'create';
@@ -112,7 +111,6 @@ sub _redirect {
     ########################
 # path: /parents/1/resources/create      => redirect_path: /parents/1/resources/<id>/show
 # path: /parents/1/resources/3/edit      => redirect_path: /parents/1/resources/3/show
-# path: /parents/1/resources/3/move_next => redirect_path: /parents/1/resources/3/show
 # path: /parents/1/resources/3/delete    => redirect_path: /parents/1/resources/list
     elsif ( $mode eq 'show' ) {
         if ( $action eq 'create' ) {
@@ -122,17 +120,14 @@ sub _redirect {
             $path
                 = $c->uri_for_action( $self->action_for('show'), \@captures );
         }
-        elsif ($action eq 'edit'
-            || $action eq 'move_next'
-            || $action eq 'move_previous' )
-        {
-            $path
-                = $c->uri_for_action( $self->action_for('show'), \@captures );
-        }
         elsif ( $action eq 'delete' ) {
             pop(@captures);
             $path
                 = $c->uri_for_action( $self->action_for('list'), \@captures );
+        }
+        elsif ( $action eq 'edit' ) {
+            $path
+                = $c->uri_for_action( $self->action_for('show'), \@captures );
         }
     }
 
@@ -145,8 +140,6 @@ sub _redirect {
     # path: /resources/3/edit                => redirect_path: /resources/list
     # path: /parents/1/resources/3/delete    => redirect_path: /parents/1/show
     # path: /resources/3/delete              => redirect_path: /resources/list
-    # path: /parents/1/resources/3/move_next => redirect_path: /parents/1/show
-    # path: /resources/3/move_next           => redirect_path: /resources/list
     elsif ( $mode eq 'show_parent' ) {
         if ( $self->has_parent ) {
             my @chain
@@ -158,9 +151,7 @@ sub _redirect {
                 $parent_base_with_id_action = $chain[-3];
             }
             elsif ($action eq 'edit'
-                || $action eq 'delete'
-                || $action eq 'move_next'
-                || $action eq 'move_previous' )
+                || $action eq 'delete' )
             {
                 $parent_base_with_id_action = $chain[-4];
                 pop @captures;
@@ -215,6 +206,11 @@ sub _msg {
             ? $c->loc( 'resources.moved_previous', $self->_identifier($c) )
             : $self->_identifier($c) . " moved previous.";
     }
+    elsif ( $action eq 'move_to' ) {
+        return $c->can('loc')
+            ? $c->loc( 'resources.moved_to', $self->_identifier($c) )
+            : $self->_identifier($c) . " moved.";
+    }
 }
 
 sub _identifier {
@@ -265,6 +261,7 @@ __PACKAGE__->meta->make_immutable();
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -273,7 +270,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.002004
+version 0.003_001
 
 =head1 ATTRIBUTES
 
@@ -336,7 +333,7 @@ documented in L<CatalystX::Resource>
 
 =head2 _redirect
 
-redirect request after create/edit/delete/move_next/move_previous
+redirect request after create/edit/delete
 
 =head2 _msg
 
@@ -373,4 +370,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

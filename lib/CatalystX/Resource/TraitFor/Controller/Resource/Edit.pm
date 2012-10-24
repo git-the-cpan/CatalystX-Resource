@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Edit;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.002004';
+    $CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.003_001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -28,6 +28,7 @@ sub edit : Method('GET') Method('POST') Chained('base_with_id')
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -36,7 +37,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Edit - a edit action for yo
 
 =head1 VERSION
 
-version 0.002004
+version 0.003_001
 
 =head1 ATTRIBUTES
 
@@ -64,4 +65,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

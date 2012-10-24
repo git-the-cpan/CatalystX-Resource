@@ -49,6 +49,7 @@ t/lib/TestApp/root/templates/resource/artist/list.tt
 t/lib/TestApp/root/templates/resource/artist/show.tt
 t/lib/TestApp/root/templates/resource/concert/list.tt
 t/lib/TestApp/root/templates/resource/concert/show.tt
+t/lib/TestApp/root/templates/resource/lyric/list.tt
 t/lib/TestApp/root/templates/resource/lyric/show.tt
 t/lib/TestApp/root/templates/resource/song/list.tt
 t/lib/TestApp/root/templates/resource/song/show.tt
