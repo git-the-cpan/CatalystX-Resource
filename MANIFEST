@@ -23,8 +23,9 @@ t/02_crud.t
 t/03_redirect_mode_list.t
 t/04_redirect_mode_show.t
 t/05_redirect_mode_show_parent.t
-t/06_sortable.t
-t/07_merge_upload_params.t
+t/06_redirect_mode_parent_list.t
+t/07_sortable.t
+t/08_merge_upload_params.t
 t/lib/TestApp.pm
 t/lib/TestApp/Controller/Resource/Artist.pm
 t/lib/TestApp/Controller/Root.pm

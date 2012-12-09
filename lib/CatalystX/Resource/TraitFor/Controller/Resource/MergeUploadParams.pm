@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams::VERSION = '0.003_002';
+    $CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams::VERSION = '0.003_003';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -34,7 +34,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams - merge u
 
 =head1 VERSION
 
-version 0.003_002
+version 0.003_003
 
 =head1 METHOD MODIFIERS
 

@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-    $CatalystX::Resource::Controller::Resource::VERSION = '0.003_002';
+    $CatalystX::Resource::Controller::Resource::VERSION = '0.003_003';
 }
 use Moose;
 use namespace::autoclean;
@@ -170,6 +170,42 @@ sub _redirect {
         }
     }
 
+    ####################################
+    # redirect_mode 'show_parent_list' #
+    ####################################
+    # path: /parents/1/resources/create      => redirect_path: /parents/list
+    # path: /parents/1/resources/3/edit      => redirect_path: /parents/list
+    # path: /parents/1/resources/3/delete    => redirect_path: /parents/list
+    elsif ( $mode eq 'show_parent_list' ) {
+        if ( $self->has_parent ) {
+            my @chain
+                = @{ $c->dispatcher->expand_action( $c->action )->{chain} };
+
+            # base action of parent
+            my $parent_base_action;
+            if ( $action eq 'create' ) {
+                $parent_base_action = $chain[-4];
+                pop @captures;
+            }
+            elsif ( $action eq 'edit' || $action eq 'delete' ) {
+                $parent_base_action = $chain[-5];
+                pop @captures;
+                pop @captures;
+            }
+
+            # parent namespace
+            my $parent_namespace = $parent_base_action->{namespace};
+
+            # private path of list action of parent
+            my $parent_list_action_private_path = "$parent_namespace/list";
+            $path = $c->uri_for_action( $parent_list_action_private_path,
+                \@captures );
+        }
+        else {
+            $path = $c->uri_for_action( $self->action_for('list') );
+        }
+    }
+
     $c->res->redirect($path);
 }
 
@@ -272,7 +308,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.003_002
+version 0.003_003
 
 =head1 ATTRIBUTES
 
@@ -321,7 +357,7 @@ of this resource (accessor in DBIC has_many)
 (e.g.: 'tracks')
 this is required if parent_key is set
 
-=head2 redirect_mode list|show|show_parent
+=head2 redirect_mode list|show|show_parent|show_parent_list
 
 After a created/edit/delete action a redirect takes place.
 The redirect behavior can be controlled with the redirect_mode attribute.
