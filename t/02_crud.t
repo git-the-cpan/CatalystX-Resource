@@ -51,7 +51,7 @@ lives_ok(
         "$path content contains string 'TestApp'" );
 }
 
-# identifier_columns
+# identifier_candidates
 {
     my $path
         = '/artists/' . $artist->id . '/concerts/' . $concert->id . '/edit';
@@ -67,7 +67,7 @@ lives_ok(
     like(
         $content,
         '/Madison Square Garden updated/',
-        'check delete success notification'
+        'check update success notification'
     );
 }
 

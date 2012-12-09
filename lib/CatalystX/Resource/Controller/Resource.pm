@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-    $CatalystX::Resource::Controller::Resource::VERSION = '0.003_001';
+    $CatalystX::Resource::Controller::Resource::VERSION = '0.003_002';
 }
 use Moose;
 use namespace::autoclean;
@@ -39,7 +39,7 @@ has 'model' => (
     required => 1,
 );
 
-has 'identifier_columns' => (
+has 'identifier_candidates' => (
     is      => 'ro',
     isa     => 'ArrayRef',
     default => sub { [qw/ name title /] },
@@ -217,16 +217,19 @@ sub _identifier {
     my ( $self, $c ) = @_;
     my $resource = $c->stash->{ $self->resource_key };
 
-    for my $col ( @{ $self->identifier_columns } ) {
-        if (   $resource->result_source->has_column($col)
-            && defined $resource->$col
-            && $resource->$col )
+    for my $identifier ( @{ $self->identifier_candidates } ) {
+        if ( $resource->can($identifier)
+            && defined $resource->$identifier )
         {
-            return $resource->$col;
+            return $resource->$identifier;
         }
     }
 
-    return ucfirst( $self->resource_key );
+    my $identifier
+        = $resource->can('id')
+        ? $self->resource_key . ' (id: ' . $resource->id . ')'
+        : $self->resource_key;
+    return ucfirst($identifier);
 }
 
 sub base : Chained('') PathPart('') CaptureArgs(0) {
@@ -261,7 +264,6 @@ __PACKAGE__->meta->make_immutable();
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -270,7 +272,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.003_001
+version 0.003_002
 
 =head1 ATTRIBUTES
 
@@ -278,18 +280,19 @@ version 0.003_001
 
 required, the DBIC model associated with this resource. (e.g.: 'DB::CDs')
 
-=head2 identifier_columns
+=head2 identifier_candidates
 
 ArrayRef of column names used as name in messages.
 
 if you edit, delete, ... a resource a msg is stored in the stash.
-the first defined value of the provided columns will be used.
+the first candidate available as accessor on the resoure (tested with
+$row->can(...)) that returns a defined value will be used.
 
-example: "Resource 'Michael Jackson' has been deleted."
+example: "'Michael Jackson' has been deleted.", "'Artist (id: 3)' has been updated."
 
 default: [ 'name', 'title' ]
 
-if no identifier is found the resource_key is used
+if no identifier is found resource_key is used
 
 =head2 resultset_key
 
@@ -370,3 +373,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
