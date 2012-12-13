@@ -9,6 +9,6 @@ BEGIN {
 }
 
 use Catalyst::ScriptRunner;
-Catalyst::ScriptRunner->run( 'TestApp', 'Server' );
+Catalyst::ScriptRunner->run('TestApp', 'Server');
 
 1;

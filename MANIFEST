@@ -17,7 +17,6 @@ lib/CatalystX/Resource/TraitFor/Controller/Resource/Show.pm
 lib/CatalystX/Resource/TraitFor/Controller/Resource/Sortable.pm
 perlcritic.rc
 perltidy.rc
-t/00-load.t
 t/01_basic.t
 t/02_crud.t
 t/03_redirect_mode_list.t
@@ -57,7 +56,4 @@ t/lib/TestApp/root/templates/resource/song/list.tt
 t/lib/TestApp/root/templates/resource/song/show.tt
 t/lib/TestApp/root/templates/wrapper.tt
 t/lib/TestApp/testdbic.db
-t/release-eol.t
-t/release-pod-coverage.t
-t/release-pod-syntax.t
 t/script/testapp_server.pl

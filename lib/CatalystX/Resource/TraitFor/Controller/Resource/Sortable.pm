@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Sortable;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.003_003';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.004001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -12,35 +12,35 @@ requires qw/
     _msg
     resource_key
     _redirect
-    /;
+/;
 
 # ABSTRACT: make your Resource sortable
 
-sub move_next : Method('POST') Chained('base_with_id') PathPart('move_next')
-    Args(0) {
+
+sub move_next : Method('POST') Chained('base_with_id') PathPart('move_next') Args(0) {
     my ( $self, $c ) = @_;
     my $resource = $c->stash->{ $self->resource_key };
     $resource->move_next;
     $c->flash( msg => $self->_msg( $c, 'move_next' ) );
-    $c->res->redirect( $c->req->referer // '/' );
+    $c->res->redirect($c->req->referer // '/');
 }
 
-sub move_previous : Method('POST') Chained('base_with_id')
-    PathPart('move_previous') Args(0) {
+
+sub move_previous : Method('POST') Chained('base_with_id') PathPart('move_previous') Args(0) {
     my ( $self, $c ) = @_;
     my $resource = $c->stash->{ $self->resource_key };
     $resource->move_previous;
     $c->flash( msg => $self->_msg( $c, 'move_previous' ) );
-    $c->res->redirect( $c->req->referer // '/' );
+    $c->res->redirect($c->req->referer // '/');
 }
 
-sub move_to : Method('POST') Chained('base_with_id') PathPart('move_to')
-    Args(1) {
+
+sub move_to : Method('POST') Chained('base_with_id') PathPart('move_to') Args(1) {
     my ( $self, $c, $pos ) = @_;
     my $resource = $c->stash->{ $self->resource_key };
-    $resource->move_to($pos);
+    $resource->move_to( $pos );
     $c->flash( msg => $self->_msg( $c, 'move_to' ) );
-    $c->res->redirect( $c->req->referer // '/' );
+    $c->res->redirect($c->req->referer // '/');
 }
 
 1;
@@ -54,7 +54,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Sortable - makes your resou
 
 =head1 VERSION
 
-version 0.003_003
+version 0.004001
 
 =head1 SYNOPSIS
 

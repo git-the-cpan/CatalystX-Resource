@@ -10,9 +10,9 @@ build_requires:
   File::Temp: 0
   FindBin: 0
   HTTP::Message: 0
+  SQL::Translator: 0.11006
   Test::Exception: 0
   Test::More: 0.88
-  Test::UseAllModules: 0
   URI: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
@@ -39,7 +39,4 @@ requires:
   MooseX::Types::Common: 0
   MooseX::Types::LoadableClass: 0
   namespace::autoclean: 0
-resources:
-  homepage: https://github.com/davewood/catalystx-resource
-  repository: https://github.com/davewood/catalystx-resource.git
-version: 0.003_003
+version: 0.004001

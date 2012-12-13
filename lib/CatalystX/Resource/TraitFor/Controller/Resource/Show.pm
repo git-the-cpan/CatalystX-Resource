@@ -1,12 +1,13 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Show;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Show::VERSION = '0.003_003';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Show::VERSION = '0.004001';
 }
 
 use MooseX::MethodAttributes::Role;
 use namespace::autoclean;
 
 # ABSTRACT: a show action for your resource
+
 
 sub show : Method('GET') Chained('base_with_id') PathPart('show') Args(0) {
     my ( $self, $c ) = @_;
@@ -23,7 +24,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Show - a show action for yo
 
 =head1 VERSION
 
-version 0.003_003
+version 0.004001
 
 =head1 ACTIONS
 

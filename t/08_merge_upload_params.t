@@ -15,35 +15,36 @@ unlink $db_file if -e $db_file;
 use_ok('TestApp::Schema');
 
 my $schema;
-lives_ok( sub { $schema = TestApp::Schema->connect("DBI:SQLite:$db_file") },
-    'Connect' );
+lives_ok(
+    sub { $schema = TestApp::Schema->connect("DBI:SQLite:$db_file") },
+    'Connect'
+);
 ok($schema);
-lives_ok( sub { $schema->deploy }, 'deploy schema' );
+lives_ok(sub { $schema->deploy }, 'deploy schema');
 
 {
     my $path = '/artists/create';
 
-    my ( $res, $c );
+    my ($res, $c);
     $res = request($path);
-    ok( $res->is_success, "GET $path returns HTTP 200" );
-    like( $res->content, '/form.*Picture/s', 'GET requests returns a form' );
+    ok($res->is_success, "GET $path returns HTTP 200");
+    like($res->content, '/form.*Picture/s', 'GET requests returns a form');
 
-    ( $res, $c ) = ctx_request(
-        POST $path,
-        Content_Type => 'form-data',
-        Content      => [
-            name            => 'simit',
-            password        => 'asdf',
-            password_repeat => 'asdf',
-            picture         => ["$Bin/lib/TestApp.pm"],    # a file upload
-        ]
+    ($res, $c) = ctx_request(
+        POST 
+            $path,
+            Content_Type => 'form-data',
+            Content => [
+                        name => 'simit',
+                        password => 'asdf',
+                        password_repeat => 'asdf',
+                        picture => [ "$Bin/lib/TestApp.pm" ], # a file upload
+                       ]
     );
-    ok( $res->is_redirect, "POST $path returns HTTP 302" );
-    my $uri = URI->new( $res->header('location') );
-    is( $uri->path, '/artists/list', "redirect to '/artists/list'" );
-    is( ref $c->req->params->{picture},
-        'Catalyst::Request::Upload',
-        'upload params are merged into req params' );
+    ok($res->is_redirect, "POST $path returns HTTP 302");
+    my $uri = URI->new($res->header('location'));
+    is($uri->path, '/artists/list', "redirect to '/artists/list'");
+    is(ref $c->req->params->{picture}, 'Catalyst::Request::Upload', 'upload params are merged into req params');
 }
 
 done_testing;

@@ -1,6 +1,6 @@
 package CatalystX::Resource;
 {
-    $CatalystX::Resource::VERSION = '0.003_003';
+  $CatalystX::Resource::VERSION = '0.004001';
 }
 use Moose::Role;
 use CatalystX::InjectComponent;
@@ -8,6 +8,7 @@ use namespace::autoclean;
 use 5.010;
 
 # ABSTRACT: Provide CRUD functionality to your Controllers
+
 
 after 'setup_components' => sub {
     my $class = shift;
@@ -38,7 +39,7 @@ CatalystX::Resource - Provide CRUD functionality to your Controllers
 
 =head1 VERSION
 
-version 0.003_003
+version 0.004001
 
 =head1 SYNOPSIS
 

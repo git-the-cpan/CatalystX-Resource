@@ -5,9 +5,9 @@ extends 'HTML::FormHandler::Model::DBIC';
 has '+item_class' => ( default => 'Resource::Concert' );
 
 has_field 'location' => (
-    type     => 'Text',
+    type => 'Text',
     required => 1,
-    size     => 40,
+    size => 40,
 );
 
 has_field 'submit' => ( type => 'Submit', value => 'Submit' );

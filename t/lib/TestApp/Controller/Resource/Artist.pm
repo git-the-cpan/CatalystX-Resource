@@ -3,15 +3,19 @@ use Moose;
 use namespace::autoclean;
 
 __PACKAGE__->config(
-    resultset_key          => 'artists_rs',
-    resources_key          => 'artists',
-    resource_key           => 'artist',
-    form_class             => 'TestApp::Form::Resource::Artist',
-    model                  => 'DB::Resource::Artist',
-    redirect_mode          => 'list',
-    traits                 => ['MergeUploadParams'],
-    activate_fields_create => [qw/ password password_repeat /],
-    actions                => { base => { PathPart => 'artists', }, },
+    resultset_key => 'artists_rs',
+    resources_key => 'artists',
+    resource_key => 'artist',
+    form_class => 'TestApp::Form::Resource::Artist',
+    model => 'DB::Resource::Artist',
+    redirect_mode => 'list',
+    traits => ['MergeUploadParams'],
+    activate_fields_create => [ qw/ password password_repeat /],
+    actions => {
+        base => {
+            PathPart => 'artists',
+        },
+    },
 );
 
 BEGIN {
@@ -23,8 +27,7 @@ BEGIN {
     with 'CatalystX::Resource::TraitFor::Controller::Resource::Create';
     with 'CatalystX::Resource::TraitFor::Controller::Resource::Edit';
     with 'CatalystX::Resource::TraitFor::Controller::Resource::Sortable';
-    with
-        'CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams';
+    with 'CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams';
 }
 
 1;

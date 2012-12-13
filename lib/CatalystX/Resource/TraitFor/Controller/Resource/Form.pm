@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Form;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.003_003';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.004001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -13,19 +13,22 @@ requires qw/
     resource_key
     _msg
     _redirect
-    /;
+/;
+
 
 has 'form_class' => (
     is       => 'ro',
     required => 1,
-    isa      => LoadableClass,
-    coerce   => 1,
+    isa => LoadableClass,
+    coerce => 1,
 );
+
 
 has 'form_template' => (
     is        => 'ro',
     predicate => 'has_form_template',
 );
+
 
 sub form {
     my ( $self, $c, $activate_fields ) = @_;
@@ -33,15 +36,15 @@ sub form {
     my $resource = $c->stash->{ $self->resource_key };
 
     # activate_form_fields in stash overrides activate_fields from config
-    my $activate_form_fields
-        = exists $c->stash->{activate_form_fields}
-        ? $c->stash->{activate_form_fields}
-        : [@$activate_fields];
+    my $activate_form_fields =
+      exists $c->stash->{activate_form_fields}
+      ? $c->stash->{activate_form_fields}
+      : [@$activate_fields];
 
     # if you want to pass additional attributes to the form put a hashref in
     # the stash key 'form_attrs'
-    my $form_attrs
-        = exists $c->stash->{form_attrs} ? $c->stash->{form_attrs} : {};
+    my $form_attrs =
+      exists $c->stash->{form_attrs} ? $c->stash->{form_attrs} : {};
 
     my $form = $self->form_class->new(%$form_attrs);
     $form->process(
@@ -81,7 +84,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Form - handles form related
 
 =head1 VERSION
 
-version 0.003_003
+version 0.004001
 
 =head1 ATTRIBUTES
 

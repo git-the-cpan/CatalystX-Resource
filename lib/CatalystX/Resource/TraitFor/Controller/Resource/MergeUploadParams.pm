@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams::VERSION = '0.003_003';
+  $CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams::VERSION = '0.004001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -10,14 +10,15 @@ use namespace::autoclean;
 
 requires qw/
     form
-    /;
+/;
+
 
 before 'form' => sub {
     my ( $self, $c, $activate_fields ) = @_;
 
     # for each upload put the Catalyst::Request::Upload object into $params
     if ( $c->req->method eq 'POST' ) {
-        while ( my ( $param_name, $upload ) = each %{ $c->req->uploads } ) {
+        while (my ($param_name, $upload) = each %{$c->req->uploads}) {
             $c->req->params->{$param_name} = $upload;
         }
     }
@@ -34,7 +35,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams - merge u
 
 =head1 VERSION
 
-version 0.003_003
+version 0.004001
 
 =head1 METHOD MODIFIERS
 

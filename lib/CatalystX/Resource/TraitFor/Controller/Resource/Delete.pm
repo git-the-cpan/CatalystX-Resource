@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Delete;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Delete::VERSION = '0.003_003';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Delete::VERSION = '0.004001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -12,10 +12,10 @@ requires qw/
     resource_key
     _msg
     _redirect
-    /;
+/;
 
-sub delete : Method('POST') Chained('base_with_id') PathPart('delete')
-    Args(0) {
+
+sub delete : Method('POST') Chained('base_with_id') PathPart('delete') Args(0) {
     my ( $self, $c ) = @_;
     my $resource = $c->stash->{ $self->resource_key };
     my $msg = $self->_msg( $c, 'delete' );
@@ -35,7 +35,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Delete - a delete action fo
 
 =head1 VERSION
 
-version 0.003_003
+version 0.004001
 
 =head1 ACTIONS
 

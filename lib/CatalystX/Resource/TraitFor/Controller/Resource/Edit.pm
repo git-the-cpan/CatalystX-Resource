@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Edit;
 {
-    $CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.003_003';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.004001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -10,7 +10,9 @@ use namespace::autoclean;
 
 requires qw/
     form
-    /;
+/;
+
+
 
 has 'activate_fields_edit' => (
     is      => 'ro',
@@ -18,12 +20,13 @@ has 'activate_fields_edit' => (
     default => sub { [] },
 );
 
-sub edit : Method('GET') Method('POST') Chained('base_with_id')
-    PathPart('edit') Args(0) {
+
+sub edit : Method('GET') Method('POST') Chained('base_with_id') PathPart('edit') Args(0) {
     my ( $self, $c ) = @_;
     $c->stash( set_update_msg => 1 );
     $self->form( $c, $self->activate_fields_edit );
 }
+
 
 1;
 
@@ -36,7 +39,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Edit - a edit action for yo
 
 =head1 VERSION
 
-version 0.003_003
+version 0.004001
 
 =head1 ATTRIBUTES
 
