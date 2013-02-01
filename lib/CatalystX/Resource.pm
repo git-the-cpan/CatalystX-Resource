@@ -1,11 +1,10 @@
 package CatalystX::Resource;
 {
-  $CatalystX::Resource::VERSION = '0.004001';
+  $CatalystX::Resource::VERSION = '0.004002';
 }
 use Moose::Role;
 use CatalystX::InjectComponent;
 use namespace::autoclean;
-use 5.010;
 
 # ABSTRACT: Provide CRUD functionality to your Controllers
 
@@ -31,6 +30,7 @@ after 'setup_components' => sub {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -39,7 +39,7 @@ CatalystX::Resource - Provide CRUD functionality to your Controllers
 
 =head1 VERSION
 
-version 0.004001
+version 0.004002
 
 =head1 SYNOPSIS
 
@@ -167,7 +167,7 @@ subclassed controller.
 
 Including it via C<traits =E<gt> ['MergeUploadParams']> works around this.
 
-MergeUploadParams different from the other roles. The other roles add a subroutine
+MergeUploadParams is different from the other roles. The other roles add a subroutine
 whereas MergeUploadParams uses a Moose Method Modifier.
 
 =head1 SEE ALSO
@@ -187,4 +187,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

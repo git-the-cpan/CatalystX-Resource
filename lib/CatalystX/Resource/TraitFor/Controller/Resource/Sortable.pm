@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Sortable;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.004001';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.004002';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -22,7 +22,7 @@ sub move_next : Method('POST') Chained('base_with_id') PathPart('move_next') Arg
     my $resource = $c->stash->{ $self->resource_key };
     $resource->move_next;
     $c->flash( msg => $self->_msg( $c, 'move_next' ) );
-    $c->res->redirect($c->req->referer // '/');
+    $c->res->redirect($c->req->referer || '/');
 }
 
 
@@ -31,7 +31,7 @@ sub move_previous : Method('POST') Chained('base_with_id') PathPart('move_previo
     my $resource = $c->stash->{ $self->resource_key };
     $resource->move_previous;
     $c->flash( msg => $self->_msg( $c, 'move_previous' ) );
-    $c->res->redirect($c->req->referer // '/');
+    $c->res->redirect($c->req->referer || '/');
 }
 
 
@@ -40,12 +40,13 @@ sub move_to : Method('POST') Chained('base_with_id') PathPart('move_to') Args(1)
     my $resource = $c->stash->{ $self->resource_key };
     $resource->move_to( $pos );
     $c->flash( msg => $self->_msg( $c, 'move_to' ) );
-    $c->res->redirect($c->req->referer // '/');
+    $c->res->redirect($c->req->referer || '/');
 }
 
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -54,7 +55,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Sortable - makes your resou
 
 =head1 VERSION
 
-version 0.004001
+version 0.004002
 
 =head1 SYNOPSIS
 
@@ -135,4 +136,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

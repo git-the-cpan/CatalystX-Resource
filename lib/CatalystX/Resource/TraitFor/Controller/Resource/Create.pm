@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Create;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::Create::VERSION = '0.004001';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Create::VERSION = '0.004002';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -35,6 +35,7 @@ sub create : Method('GET') Method('POST') Chained('base') PathPart('create') Arg
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -43,15 +44,15 @@ CatalystX::Resource::TraitFor::Controller::Resource::Create - a create action fo
 
 =head1 VERSION
 
-version 0.004001
+version 0.004002
 
 =head1 ATTRIBUTES
 
 =head2 activate_fields_create
 
-hashref of form fields to activate in the create form
-e.g. ['password', 'password_confirm']
-default = []
+(default = []).
+arrayref of form fields to activate in the create form
+(e.g. ['password', 'password_confirm'], default = [])
 Can be overriden with $c->stash->{activate_form_fields}
 
 Example: You only want admins to be able to change a field.
@@ -75,4 +76,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

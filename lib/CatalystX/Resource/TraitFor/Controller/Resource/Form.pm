@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Form;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.004001';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.004002';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -17,10 +17,10 @@ requires qw/
 
 
 has 'form_class' => (
-    is       => 'ro',
+    is       => 'rw',
     required => 1,
-    isa => LoadableClass,
-    coerce => 1,
+    isa      => LoadableClass,
+    coerce   => 1,
 );
 
 
@@ -51,6 +51,7 @@ sub form {
         active => $activate_form_fields,
         item   => $resource,
         params => $c->req->params,
+        posted => ($c->req->method eq 'POST'),
     );
 
     if ( $self->has_form_template ) {
@@ -76,6 +77,7 @@ sub form {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -84,7 +86,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Form - handles form related
 
 =head1 VERSION
 
-version 0.004001
+version 0.004002
 
 =head1 ATTRIBUTES
 
@@ -117,4 +119,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
