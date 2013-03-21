@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Form;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.004002';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.005_001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -41,17 +41,23 @@ sub form {
       ? $c->stash->{activate_form_fields}
       : [@$activate_fields];
 
-    # if you want to pass additional attributes to the form put a hashref in
-    # the stash key 'form_attrs'
     my $form_attrs =
       exists $c->stash->{form_attrs} ? $c->stash->{form_attrs} : {};
+    warn 'DEPRECATION WARNING: Change $c->stash->{form_attrs} to $c->stash->{form_attrs_new} see Changes file for details.'
+      if scalar keys %$form_attrs;
 
-    my $form = $self->form_class->new(%$form_attrs);
+    my $form_attrs_new =
+      exists $c->stash->{form_attrs_new} ? $c->stash->{form_attrs_new} : {};
+    my $form_attrs_process =
+      exists $c->stash->{form_attrs_process} ? $c->stash->{form_attrs_process} : {};
+
+    my $form = $self->form_class->new(%$form_attrs, %$form_attrs_new);
     $form->process(
         active => $activate_form_fields,
         item   => $resource,
         params => $c->req->params,
         posted => ($c->req->method eq 'POST'),
+       %$form_attrs_process,
     );
 
     if ( $self->has_form_template ) {
@@ -74,10 +80,11 @@ sub form {
     $self->_redirect($c);
 }
 
+
+
 1;
 
 __END__
-
 =pod
 
 =head1 NAME
@@ -86,7 +93,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Form - handles form related
 
 =head1 VERSION
 
-version 0.004002
+version 0.005_001
 
 =head1 ATTRIBUTES
 
@@ -107,6 +114,20 @@ optional, if you don't supply a form_template a stringified version will be used
 handle form validation, configuration of visible fields
 and setting of notification messages
 
+=head1 Catalyst stash variables
+
+=head2 form_attrs_new
+
+you can pass attributes to $form->new via $c->stash->{form_attrs_new}
+
+  $c->stash->{form_attrs_new} = { #... };
+
+=head2 form_attrs_process
+
+you can pass attributes to $form->process via $c->stash->{form_attrs_process}
+
+  $c->stash->{form_attrs_process} = { posted => 0 };
+
 =head1 AUTHOR
 
 David Schmidt <davewood@cpan.org>
@@ -119,3 +140,4 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
