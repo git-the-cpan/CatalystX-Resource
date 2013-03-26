@@ -1,6 +1,6 @@
 package CatalystX::Resource;
 {
-  $CatalystX::Resource::VERSION = '0.005_001';
+  $CatalystX::Resource::VERSION = '0.005_002';
 }
 use Moose::Role;
 use CatalystX::InjectComponent;
@@ -30,6 +30,7 @@ after 'setup_components' => sub {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -38,7 +39,7 @@ CatalystX::Resource - Provide CRUD functionality to your Controllers
 
 =head1 VERSION
 
-version 0.005_001
+version 0.005_002
 
 =head1 SYNOPSIS
 
@@ -186,4 +187,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

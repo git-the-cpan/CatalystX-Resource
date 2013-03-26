@@ -19,7 +19,7 @@ my %WriteMakefileArgs = (
     "File::Temp" => 0,
     "FindBin" => 0,
     "HTTP::Message" => 0,
-    "SQL::Translator" => "0.11006",
+    "SQL::Translator" => "0.11016",
     "Test::Exception" => 0,
     "Test::More" => "0.88",
     "URI" => 0
@@ -48,7 +48,7 @@ my %WriteMakefileArgs = (
     "MooseX::Types::LoadableClass" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.005_001",
+  "VERSION" => "0.005_002",
   "test" => {
     "TESTS" => "t/*.t"
   }

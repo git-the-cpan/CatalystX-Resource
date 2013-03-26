@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams::VERSION = '0.005_001';
+  $CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams::VERSION = '0.005_002';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -27,6 +27,7 @@ before 'form' => sub {
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -35,7 +36,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams - merge u
 
 =head1 VERSION
 
-version 0.005_001
+version 0.005_002
 
 =head1 METHOD MODIFIERS
 
@@ -61,4 +62,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-

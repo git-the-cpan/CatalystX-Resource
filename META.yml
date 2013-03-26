@@ -10,14 +10,14 @@ build_requires:
   File::Temp: 0
   FindBin: 0
   HTTP::Message: 0
-  SQL::Translator: 0.11006
+  SQL::Translator: 0.11016
   Test::Exception: 0
   Test::More: 0.88
   URI: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300018, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300031, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -39,4 +39,4 @@ requires:
   MooseX::Types::Common: 0
   MooseX::Types::LoadableClass: 0
   namespace::autoclean: 0
-version: 0.005_001
+version: 0.005_002
