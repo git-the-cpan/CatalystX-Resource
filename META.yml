@@ -39,4 +39,4 @@ requires:
   MooseX::Types::Common: 0
   MooseX::Types::LoadableClass: 0
   namespace::autoclean: 0
-version: 0.005_002
+version: 0.006001
