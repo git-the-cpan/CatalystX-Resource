@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-  $CatalystX::Resource::Controller::Resource::VERSION = '0.006001';
+  $CatalystX::Resource::Controller::Resource::VERSION = '0.007_001';
 }
 use Moose;
 use namespace::autoclean;
@@ -246,6 +246,11 @@ sub _msg {
             ? $c->loc( 'resources.moved_to', $self->_identifier($c) )
             : $self->_identifier($c) . " moved.";
     }
+    elsif ( $action eq 'move_to_undef' ) {
+        return $c->can('loc')
+            ? $c->loc( 'resources.move_to_undef', $self->_identifier($c) )
+            : 'Could not move ' . $self->_identifier($c) . '. No position defined.';
+    }
 }
 
 
@@ -312,7 +317,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.006001
+version 0.007_001
 
 =head1 ATTRIBUTES
 

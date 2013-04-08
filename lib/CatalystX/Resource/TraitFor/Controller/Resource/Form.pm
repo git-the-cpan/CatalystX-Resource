@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Form;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.006001';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.007_001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -41,17 +41,12 @@ sub form {
       ? $c->stash->{activate_form_fields}
       : [@$activate_fields];
 
-    my $form_attrs =
-      exists $c->stash->{form_attrs} ? $c->stash->{form_attrs} : {};
-    warn 'DEPRECATION WARNING: Change $c->stash->{form_attrs} to $c->stash->{form_attrs_new} see Changes file for details.'
-      if scalar keys %$form_attrs;
-
     my $form_attrs_new =
       exists $c->stash->{form_attrs_new} ? $c->stash->{form_attrs_new} : {};
     my $form_attrs_process =
       exists $c->stash->{form_attrs_process} ? $c->stash->{form_attrs_process} : {};
 
-    my $form = $self->form_class->new(%$form_attrs, %$form_attrs_new);
+    my $form = $self->form_class->new(%$form_attrs_new);
     $form->process(
         active => $activate_form_fields,
         item   => $resource,
@@ -94,7 +89,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Form - handles form related
 
 =head1 VERSION
 
-version 0.006001
+version 0.007_001
 
 =head1 ATTRIBUTES
 

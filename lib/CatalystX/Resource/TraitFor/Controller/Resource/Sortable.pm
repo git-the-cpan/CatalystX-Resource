@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Sortable;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.006001';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.007_001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -35,8 +35,15 @@ sub move_previous : Method('POST') Chained('base_with_id') PathPart('move_previo
 }
 
 
-sub move_to : Method('POST') Chained('base_with_id') PathPart('move_to') Args(1) {
-    my ( $self, $c, $pos ) = @_;
+sub move_to : Method('POST') Chained('base_with_id') PathPart('move_to') Args(0) {
+    my ( $self, $c ) = @_;
+
+    my $pos = $c->req->param('pos');
+    if (!defined $pos) {
+        $c->stash( error_msg => $self->_msg( $c, 'move_to_undef' ) );
+        $c->detach( $self->error_path );
+    }
+
     my $resource = $c->stash->{ $self->resource_key };
     $resource->move_to( $pos );
     $c->flash( msg => $self->_msg( $c, 'move_to' ) );
@@ -55,7 +62,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Sortable - makes your resou
 
 =head1 VERSION
 
-version 0.006001
+version 0.007_001
 
 =head1 SYNOPSIS
 

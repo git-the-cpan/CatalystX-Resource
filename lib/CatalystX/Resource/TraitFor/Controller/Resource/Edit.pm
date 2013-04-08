@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Edit;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.006001';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.007_001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -40,7 +40,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Edit - a edit action for yo
 
 =head1 VERSION
 
-version 0.006001
+version 0.007_001
 
 =head1 ATTRIBUTES
 
