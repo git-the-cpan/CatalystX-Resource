@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::List;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::List::VERSION = '0.007_001';
+  $CatalystX::Resource::TraitFor::Controller::Resource::List::VERSION = '0.007_002';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -33,7 +33,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::List - a list action for yo
 
 =head1 VERSION
 
-version 0.007_001
+version 0.007_002
 
 =head1 ACTIONS
 

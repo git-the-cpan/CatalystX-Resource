@@ -11,19 +11,7 @@ use ExtUtils::MakeMaker 6.30;
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Provide CRUD functionality to your Controllers",
   "AUTHOR" => "David Schmidt <davewood\@cpan.org>",
-  "BUILD_REQUIRES" => {
-    "Catalyst::Action::RenderView" => 0,
-    "Catalyst::Plugin::Session::State::Cookie" => 0,
-    "Catalyst::Plugin::Session::Store::File" => 0,
-    "Catalyst::View::TT" => 0,
-    "File::Temp" => 0,
-    "FindBin" => 0,
-    "HTTP::Message" => 0,
-    "SQL::Translator" => "0.11016",
-    "Test::Exception" => 0,
-    "Test::More" => "0.88",
-    "URI" => 0
-  },
+  "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
   },
@@ -48,12 +36,38 @@ my %WriteMakefileArgs = (
     "MooseX::Types::LoadableClass" => 0,
     "namespace::autoclean" => 0
   },
-  "VERSION" => "0.007_001",
+  "TEST_REQUIRES" => {
+    "Catalyst::Action::RenderView" => 0,
+    "Catalyst::Plugin::Session::State::Cookie" => 0,
+    "Catalyst::Plugin::Session::Store::File" => 0,
+    "Catalyst::View::TT" => 0,
+    "File::Temp" => 0,
+    "FindBin" => 0,
+    "HTTP::Message" => 0,
+    "SQL::Translator" => "0.11016",
+    "Test::Exception" => 0,
+    "Test::More" => "0.88",
+    "URI" => 0
+  },
+  "VERSION" => "0.007_002",
   "test" => {
     "TESTS" => "t/*.t"
   }
 );
 
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
+  my $tr = delete $WriteMakefileArgs{TEST_REQUIRES};
+  my $br = $WriteMakefileArgs{BUILD_REQUIRES};
+  for my $mod ( keys %$tr ) {
+    if ( exists $br->{$mod} ) {
+      $br->{$mod} = $tr->{$mod} if $tr->{$mod} > $br->{$mod};
+    }
+    else {
+      $br->{$mod} = $tr->{$mod};
+    }
+  }
+}
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
   my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};

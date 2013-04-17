@@ -20,6 +20,8 @@ my $testapp = new_ok ( 'TestApp' );
         'Injected controller has correct class name'
     );
 
+    ok ( $controller->has_prefetch, 'Artist controller has a prefetch attribute set.' );
+
     does_ok($controller, 'CatalystX::Resource::TraitFor::Controller::Resource::Form');
     does_ok($controller, 'CatalystX::Resource::TraitFor::Controller::Resource::List');
     does_ok($controller, 'CatalystX::Resource::TraitFor::Controller::Resource::Show');
@@ -45,6 +47,8 @@ my $testapp = new_ok ( 'TestApp' );
         'TestApp::Controller::Resource::Concert',
         'Injected controller has correct class name'
     );
+
+    ok ( !$controller->has_prefetch, 'Concert controller does not have a prefetch attribute set.' );
 
     does_ok($controller, 'CatalystX::Resource::TraitFor::Controller::Resource::Form');
     does_ok($controller, 'CatalystX::Resource::TraitFor::Controller::Resource::List');
@@ -84,7 +88,7 @@ my $testapp = new_ok ( 'TestApp' );
     does_ok($controller, 'CatalystX::Resource::TraitFor::Controller::Resource::Delete');
     does_ok($controller, 'CatalystX::Resource::TraitFor::Controller::Resource::Sortable');
 
-    for my $action_name (qw/base list show delete create edit move_next move_previous/) {
+    for my $action_name (qw/ base list show delete create edit move_next move_previous move_to /) {
         my $action = $controller->action_for($action_name);
         ok ( defined($action), "Controller has '$action_name' action." );
     }

@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-  $CatalystX::Resource::Controller::Resource::VERSION = '0.007_001';
+  $CatalystX::Resource::Controller::Resource::VERSION = '0.007_002';
 }
 use Moose;
 use namespace::autoclean;
@@ -77,6 +77,12 @@ has 'parent_key' => (
 has 'parents_accessor' => (
     is  => 'ro',
     isa => NonEmptySimpleStr,
+);
+
+
+has 'prefetch' => (
+    is        => 'ro',
+    predicate => 'has_prefetch',
 );
 
 
@@ -281,6 +287,7 @@ sub base : Chained('') PathPart('') CaptureArgs(0) {
     # Store the ResultSet in stash so it's available for other methods
     # get the model from the controllers config that consumes this role
     my $resultset;
+
     if ( $self->has_parent ) {
         $resultset = $c->stash->{ $self->parent_key }
             ->related_resultset( $self->parents_accessor );
@@ -288,6 +295,10 @@ sub base : Chained('') PathPart('') CaptureArgs(0) {
     else {
         $resultset = $c->model( $self->model );
     }
+
+    $resultset = $resultset->search_rs( undef, { prefetch => $self->prefetch } )
+        if $self->has_prefetch;
+
     $c->stash( $self->resultset_key => $resultset );
 }
 
@@ -317,7 +328,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.007_001
+version 0.007_002
 
 =head1 ATTRIBUTES
 
@@ -365,6 +376,11 @@ the accessor on the parent resource to get a resultset
 of this resource (accessor in DBIC has_many)
 (e.g.: 'tracks')
 this is required if parent_key is set
+
+=head2 prefetch
+
+The prefetch attribute value is passed through. See L<DBIx::Class::ResultSet> for details.
+(e.g.: 'albums', [qw/albums concerts/])
 
 =head2 redirect_mode list|show|show_parent|show_parent_list
 
