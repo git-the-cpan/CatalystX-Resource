@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::List;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::List::VERSION = '0.007_002';
+  $CatalystX::Resource::TraitFor::Controller::Resource::List::VERSION = '0.007_003';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -8,18 +8,8 @@ use namespace::autoclean;
 
 # ABSTRACT: a list action for your resource
 
-requires qw/
-    resources_key
-    resultset_key
-/;
 
-
-sub list : Method('GET') Chained('base') PathPart('list') Args(0) {
-    my ( $self, $c ) = @_;
-    $c->stash(
-        $self->resources_key => [ $c->stash->{ $self->resultset_key }->all ]
-    );
-}
+sub list : Method('GET') Chained('base') PathPart('list') Args(0) {}
 
 1;
 
@@ -33,7 +23,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::List - a list action for yo
 
 =head1 VERSION
 
-version 0.007_002
+version 0.007_003
 
 =head1 ACTIONS
 

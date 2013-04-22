@@ -1,6 +1,6 @@
 package CatalystX::Resource::Controller::Resource;
 {
-  $CatalystX::Resource::Controller::Resource::VERSION = '0.007_002';
+  $CatalystX::Resource::Controller::Resource::VERSION = '0.007_003';
 }
 use Moose;
 use namespace::autoclean;
@@ -47,13 +47,6 @@ has 'identifier_candidates' => (
 
 
 has 'resultset_key' => (
-    is       => 'ro',
-    isa      => NonEmptySimpleStr,
-    required => 1,
-);
-
-
-has 'resources_key' => (
     is       => 'ro',
     isa      => NonEmptySimpleStr,
     required => 1,
@@ -328,7 +321,7 @@ CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.007_002
+version 0.007_003
 
 =head1 ATTRIBUTES
 
@@ -352,35 +345,30 @@ if no identifier is found resource_key is used
 
 =head2 resultset_key
 
-stash key used to store the resultset of this resource. (e.g.: 'cds_rs')
-
-=head2 resources_key
-
-stash key used to store all results of this resource. (e.g.: 'tracks')
-You will need this to access a list of your resources in your template.
+stash key used to store the resultset of this resource. (e.g.: 'albums')
 
 =head2 resource_key
 
-stash key used to store specific result of this resource. (e.g.: 'track')
+stash key used to store specific result of this resource. (e.g.: 'album')
 You will need this to access your resource in your template.
 
 =head2 parent_key
 
 for a nested resource 'parent_key' is used as stash key to store the parent item
-(e.g.: 'cd')
+(e.g.: 'artist')
 this is required if parent_key is set
 
 =head2 parents_accessor
 
 the accessor on the parent resource to get a resultset
 of this resource (accessor in DBIC has_many)
-(e.g.: 'tracks')
+(e.g.: 'albums')
 this is required if parent_key is set
 
 =head2 prefetch
 
 The prefetch attribute value is passed through. See L<DBIx::Class::ResultSet> for details.
-(e.g.: 'albums', [qw/albums concerts/])
+(e.g.: 'tracks', [qw/tracks credits/])
 
 =head2 redirect_mode list|show|show_parent|show_parent_list
 
