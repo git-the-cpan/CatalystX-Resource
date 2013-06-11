@@ -1,6 +1,6 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Sortable;
 {
-  $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.007_003';
+  $CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.008001';
 }
 
 use MooseX::MethodAttributes::Role;
@@ -62,14 +62,13 @@ CatalystX::Resource::TraitFor::Controller::Resource::Sortable - makes your resou
 
 =head1 VERSION
 
-version 0.007_003
+version 0.008001
 
 =head1 SYNOPSIS
 
     # TestApp.pm
     'Controller::Resource::Artist' => {
-        resultset_key => 'artists_rs',
-        resources_key => 'artists',
+        resultset_key => 'artists',
         resource_key => 'artist',
         form_class => 'TestApp::Form::Resource::Artist',
         model => 'DB::Resource::Artist',

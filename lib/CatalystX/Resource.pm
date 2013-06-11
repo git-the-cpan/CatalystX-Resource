@@ -1,6 +1,6 @@
 package CatalystX::Resource;
 {
-  $CatalystX::Resource::VERSION = '0.007_003';
+  $CatalystX::Resource::VERSION = '0.008001';
 }
 use Moose::Role;
 use CatalystX::InjectComponent;
@@ -39,7 +39,7 @@ CatalystX::Resource - Provide CRUD functionality to your Controllers
 
 =head1 VERSION
 
-version 0.007_003
+version 0.008001
 
 =head1 SYNOPSIS
 
@@ -49,8 +49,7 @@ version 0.007_003
 
     __PACKAGE__->config(
         'Controller::Resource::Artist' => {
-            resultset_key => 'artists_rs',
-            resources_key => 'artists',
+            resultset_key => 'artists',
             resource_key => 'artist',
             form_class => 'TestApp::Form::Resource::Artist',
             model => 'DB::Resource::Artist',
@@ -80,16 +79,19 @@ Resources can be nested.
 =head2 traits
 
 default traits:
-    List
-    Show
-    Delete
+    List   ... GET /<resource>/list
+    Show   ... GET /<resource>/*/show
+    Delete ... POST /<resource>/*/delete
     Form
-    Create
-    Edit
+    Create ... GET|POST /<resource>/create
+    Edit   ... GET|POST /<resource>/*/edit
 
 optional traits:
-    Sortable
     MergeUploadParams
+    Sortable
+        POST /<resource>/*/move_next
+        POST /<resource>/*/move_previous
+        POST /<resource>/*/move_to
 
 You can remove actions if you don't need them.
 
@@ -132,8 +134,7 @@ B<before> method modifier.
     use namespace::autoclean;
 
     __PACKAGE__->config(
-        resultset_key => 'artists_rs',
-        resources_key => 'artists',
+        resultset_key => 'artists',
         resource_key  => 'artist',
         form_class    => 'TestApp::Form::Resource::Artist',
         model         => 'DB::Resource::Artist',
