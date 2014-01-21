@@ -1,8 +1,5 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams;
-{
-  $CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams::VERSION = '0.008001';
-}
-
+$CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams::VERSION = '0.009001';
 use MooseX::MethodAttributes::Role;
 use namespace::autoclean;
 
@@ -30,13 +27,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 CatalystX::Resource::TraitFor::Controller::Resource::MergeUploadParams - merge upload params into request params
 
 =head1 VERSION
 
-version 0.008001
+version 0.009001
 
 =head1 METHOD MODIFIERS
 

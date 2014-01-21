@@ -1,7 +1,5 @@
 package CatalystX::Resource::Controller::Resource;
-{
-  $CatalystX::Resource::Controller::Resource::VERSION = '0.008001';
-}
+$CatalystX::Resource::Controller::Resource::VERSION = '0.009001';
 use Moose;
 use namespace::autoclean;
 
@@ -28,7 +26,6 @@ __PACKAGE__->config(
         Create
         Edit
     /],
-    action_roles => ['MatchRequestMethod'],
 );
 
 
@@ -315,13 +312,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 CatalystX::Resource::Controller::Resource - Base Controller for Resources
 
 =head1 VERSION
 
-version 0.008001
+version 0.009001
 
 =head1 ATTRIBUTES
 
