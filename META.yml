@@ -31,7 +31,7 @@ requires:
   Catalyst::Plugin::Session: 0.27
   Catalyst::Runtime: 5.90020
   CatalystX::InjectComponent: 0
-  DBIx::Class: 0.8107
+  DBIx::Class: 0.08107
   HTML::FormHandler: 0
   HTML::FormHandler::Model::DBIC: 0
   Moose: 0
@@ -44,4 +44,4 @@ resources:
   bugtracker: https://github.com/davewood/catalystx-resource/issues
   homepage: https://github.com/davewood/catalystx-resource
   repository: https://github.com/davewood/catalystx-resource.git
-version: 0.009_001
+version: 0.009_002

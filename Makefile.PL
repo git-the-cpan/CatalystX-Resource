@@ -26,7 +26,7 @@ my %WriteMakefileArgs = (
     "Catalyst::Plugin::Session" => "0.27",
     "Catalyst::Runtime" => "5.90020",
     "CatalystX::InjectComponent" => 0,
-    "DBIx::Class" => "0.8107",
+    "DBIx::Class" => "0.08107",
     "HTML::FormHandler" => 0,
     "HTML::FormHandler::Model::DBIC" => 0,
     "Moose" => 0,
@@ -51,7 +51,7 @@ my %WriteMakefileArgs = (
     "Test::Warnings" => 0,
     "URI" => 0
   },
-  "VERSION" => "0.009_001",
+  "VERSION" => "0.009_002",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -68,7 +68,7 @@ my %FallbackPrereqs = (
   "Catalyst::Runtime" => "5.90020",
   "Catalyst::View::TT" => 0,
   "CatalystX::InjectComponent" => 0,
-  "DBIx::Class" => "0.8107",
+  "DBIx::Class" => "0.08107",
   "File::Temp" => 0,
   "FindBin" => 0,
   "HTML::FormHandler" => 0,
