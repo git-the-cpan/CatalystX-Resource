@@ -1,5 +1,5 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Form;
-$CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.009_002';
+$CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.010001';
 use MooseX::MethodAttributes::Role;
 use MooseX::Types::LoadableClass qw/ LoadableClass /;
 use namespace::autoclean;
@@ -88,7 +88,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Form - handles form related
 
 =head1 VERSION
 
-version 0.009_002
+version 0.010001
 
 =head1 ATTRIBUTES
 

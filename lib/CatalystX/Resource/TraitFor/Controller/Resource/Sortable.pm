@@ -1,5 +1,5 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Sortable;
-$CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.009_002';
+$CatalystX::Resource::TraitFor::Controller::Resource::Sortable::VERSION = '0.010001';
 use MooseX::MethodAttributes::Role;
 use namespace::autoclean;
 
@@ -61,7 +61,7 @@ CatalystX::Resource::TraitFor::Controller::Resource::Sortable - makes your resou
 
 =head1 VERSION
 
-version 0.009_002
+version 0.010001
 
 =head1 SYNOPSIS
 
