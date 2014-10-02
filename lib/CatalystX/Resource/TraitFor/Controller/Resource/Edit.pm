@@ -1,5 +1,5 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Edit;
-$CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.010001';
+$CatalystX::Resource::TraitFor::Controller::Resource::Edit::VERSION = '0.02';
 use MooseX::MethodAttributes::Role;
 use namespace::autoclean;
 
@@ -39,15 +39,17 @@ CatalystX::Resource::TraitFor::Controller::Resource::Edit - a edit action for yo
 
 =head1 VERSION
 
-version 0.010001
+version 0.02
 
 =head1 ATTRIBUTES
 
 =head2 activate_fields_edit
 
 arrayref of form fields to activate in the edit form
-(default = []).
+
 Can be overriden with $c->stash->{activate_form_fields}
+
+(default = []).
 
 =head1 ACTIONS
 

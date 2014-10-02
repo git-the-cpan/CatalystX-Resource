@@ -1,5 +1,5 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Form;
-$CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.010001';
+$CatalystX::Resource::TraitFor::Controller::Resource::Form::VERSION = '0.02';
 use MooseX::MethodAttributes::Role;
 use MooseX::Types::LoadableClass qw/ LoadableClass /;
 use namespace::autoclean;
@@ -88,18 +88,20 @@ CatalystX::Resource::TraitFor::Controller::Resource::Form - handles form related
 
 =head1 VERSION
 
-version 0.010001
+version 0.02
 
 =head1 ATTRIBUTES
 
 =head2 form_class
 
 HTML::FormHandler class to use for this resource.
+
 e.g.: 'MyApp::Form::Resources'
 
 =head2 form_template
 
 template file for HTML::FormHandler
+
 optional, if you don't supply a form_template a stringified version will be used
 
 =head1 METHODS

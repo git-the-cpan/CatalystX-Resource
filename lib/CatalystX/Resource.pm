@@ -1,5 +1,5 @@
 package CatalystX::Resource;
-$CatalystX::Resource::VERSION = '0.010001';
+$CatalystX::Resource::VERSION = '0.02';
 use Moose::Role;
 use CatalystX::InjectComponent;
 use namespace::autoclean;
@@ -39,7 +39,7 @@ CatalystX::Resource - Provide CRUD functionality to your Controllers
 
 =head1 VERSION
 
-version 0.010001
+version 0.02
 
 =head1 SYNOPSIS
 
@@ -78,20 +78,37 @@ Resources can be nested.
 
 =head2 traits
 
-default traits:
-    List   ... GET /<resource>/list
-    Show   ... GET /<resource>/*/show
-    Delete ... POST /<resource>/*/delete
-    Form
-    Create ... GET|POST /<resource>/create
-    Edit   ... GET|POST /<resource>/*/edit
+=head3 default
 
-optional traits:
-    MergeUploadParams
-    Sortable
+=over
+
+=item List   ... GET /<resource>/list
+
+=item Show   ... GET /<resource>/*/show
+
+=item Delete ... POST /<resource>/*/delete
+
+=item Form
+
+=item Create ... GET|POST /<resource>/create
+
+=item Edit   ... GET|POST /<resource>/*/edit
+
+=back
+
+=head3 optional
+
+=over
+
+=item MergeUploadParams
+
+=item Sortable
+
         POST /<resource>/*/move_next
         POST /<resource>/*/move_previous
         POST /<resource>/*/move_to
+
+=back
 
 You can remove actions if you don't need them.
 

@@ -1,5 +1,5 @@
 package CatalystX::Resource::TraitFor::Controller::Resource::Create;
-$CatalystX::Resource::TraitFor::Controller::Resource::Create::VERSION = '0.010001';
+$CatalystX::Resource::TraitFor::Controller::Resource::Create::VERSION = '0.02';
 use MooseX::MethodAttributes::Role;
 use namespace::autoclean;
 
@@ -43,16 +43,18 @@ CatalystX::Resource::TraitFor::Controller::Resource::Create - a create action fo
 
 =head1 VERSION
 
-version 0.010001
+version 0.02
 
 =head1 ATTRIBUTES
 
 =head2 activate_fields_create
 
-(default = []).
 arrayref of form fields to activate in the create form
-(e.g. ['password', 'password_confirm'], default = [])
+Example: ['password', 'password_confirm']
+
 Can be overriden with $c->stash->{activate_form_fields}
+
+(default = []).
 
 Example: You only want admins to be able to change a field.
 Disable field by default in HTML::FormHandler.
